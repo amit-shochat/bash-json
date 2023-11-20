@@ -10,13 +10,13 @@ create_json() {
 EOF
 }
 
-for (( NUM=0; NUM<=300; NUM+=5 )); do
+for (( NUM=0; NUM<="$RUN_TIME"; NUM+=5 )); do
 	create_json
 	for WORD in `cat info.json`
 	do
 	    echo $WORD
 	    # send the JSON payload
-	    echo $WORD | nc -v -w 1 192.168.122.136 50001
+	    echo $WORD | nc -v -w 1 $IP $PORT
 	done
 	sleep 5
-done
+done	
